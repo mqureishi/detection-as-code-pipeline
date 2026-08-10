@@ -1,0 +1,22 @@
+title: Suspicious Account Reconnaissance Activity
+id: 1f42a2b8-7c89-4e2b-9a81-d123456789ab
+status: experimental
+description: Detects common account reconnaissance commands like whoami executed via command line.
+author: Mohammed Hasan Qureishi (DaC Portfolio Project)
+date: 2026/08/10
+references:
+    - https://attack.mitre.org/techniques/T1033/
+tags:
+    - attack.discovery
+    - attack.t1033
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\whoami.exe'
+    condition: selection
+falsepositives:
+    - Administrator diagnostic scripts
+    - IT support scripts
+level: low
